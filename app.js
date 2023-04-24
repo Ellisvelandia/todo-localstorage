@@ -4,9 +4,13 @@ const message = document.querySelector(".list-tasks");
 let tasks = [];
 
 function eventListeners() {
+  // Agregar un evento cuando se carga la página para recuperar los datos almacenados localmente
   document.addEventListener("DOMContentLoaded", () => {
-    tasks = [];
-    createHTML();
+    const storedTasks = JSON.parse(localStorage.getItem("tasks"));
+    if (storedTasks) {
+      tasks = storedTasks;
+      createHTML();
+    }
   });
 
   listTasks.addEventListener("click", deleteTask);
